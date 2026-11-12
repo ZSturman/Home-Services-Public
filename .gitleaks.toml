@@ -1,0 +1,10 @@
+title = "Public snapshot secret scanning"
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated, expired synthetic pairing invitations"
+condition = "AND"
+paths = ['''contracts/v1/examples/(98_pairing_preview|99_pairing_exchange|100_pairing_exchange_replay|101_pairing_competing_claim|107_pairing_expired)\.json$''']
+regexTarget = "secret"
+regexes = ['''^fixture-secret-[0-9]+$''']

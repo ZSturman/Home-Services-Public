@@ -1,0 +1,32 @@
+{
+  "name": "pairing_competing_claim",
+  "request": {
+    "body": {
+      "client_secret": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+      "device_name": "Fixture phone",
+      "invitation_id": "pair_0000000000000001",
+      "secret": "fixture-secret-0013"
+    },
+    "headers": {
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/pairing/exchange"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "pairing_used",
+        "details": {},
+        "message": "this invitation has already been used"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 409
+  }
+}

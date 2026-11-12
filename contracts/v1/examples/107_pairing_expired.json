@@ -1,0 +1,30 @@
+{
+  "name": "pairing_expired",
+  "request": {
+    "body": {
+      "invitation_id": "pair_0000000000000002",
+      "secret": "fixture-secret-0014"
+    },
+    "headers": {
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/pairing/preview"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "pairing_expired",
+        "details": {},
+        "message": "pairing invitation expired or cancelled"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 401
+  }
+}

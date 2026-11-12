@@ -1,0 +1,32 @@
+{
+  "name": "legacy_backup_status",
+  "note": "derived from repository snapshots; Home Platform reads state, warning, and error",
+  "request": {
+    "headers": {
+      "Home-Services-Contract": "1",
+      "X-Workspace-Token": "hst_tok_0000000000000004.fixture-secret-0004"
+    },
+    "method": "GET",
+    "path": "/api/backup/status"
+  },
+  "response": {
+    "body": {
+      "active": false,
+      "error": null,
+      "hostname": "fixture-mac",
+      "last_success_at": "2026-11-11T16:47:45.377894-08:00",
+      "observed_at": "2026-10-20T08:16:31Z",
+      "series": 1,
+      "snapshot_id": "8172e6e648c42b4352e65cf32b2bf52b3f35641a7d886340feecd4a90c04e02d",
+      "source": "home-services",
+      "state": "completed",
+      "warning": null
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

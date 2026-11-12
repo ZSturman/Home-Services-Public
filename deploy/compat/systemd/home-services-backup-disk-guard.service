@@ -1,0 +1,27 @@
+[Unit]
+Description=Home Services - verify backup HDD is mounted
+# The fstab entry is marked nofail, so local-fs.target can complete before a
+# USB disk has appeared.  RequiresMountsFor asks systemd for the generated
+# mnt-workspace\x2dbackup.mount unit and waits for that specific mount rather
+# than racing it or papering over the race with a sleep.
+RequiresMountsFor=/mnt/workspace-backup
+After=local-fs.target mnt-workspace\x2dbackup.mount
+
+[Service]
+Type=oneshot
+# Deliberately no RemainAfterExit: home-services-backup-disk-guard.timer re-runs
+# this every few minutes, and Requires= from workspace-backup.service etc.
+# should see a fresh mount check each time, not a cached "yes" from hours
+# earlier that stopped being true if the disk was later unplugged.
+User=kiosk
+Group=kiosk
+Environment=PATH=/opt/home-services/compat/current/venv/bin:/usr/bin:/bin
+ExecStart=/opt/home-services/compat/current/venv/bin/home-services-compat --config /etc/home-services/compat/config.yaml disk require backup
+# The mount can still win a race against this guard's own first boot-time
+# attempt (see above); once the mount is actually present, bring the browser
+# back up too instead of leaving it dead until someone notices and restarts
+# it by hand -- see docs/workspace-sync-operations.md's Pi diagnostics.
+ExecStartPost=-/usr/bin/sudo -n /bin/sh -c 'systemctl is-active --quiet home-services-backup-browser.service || systemctl restart home-services-backup-browser.service'
+
+[Install]
+WantedBy=multi-user.target

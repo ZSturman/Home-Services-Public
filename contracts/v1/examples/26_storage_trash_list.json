@@ -1,0 +1,32 @@
+{
+  "name": "storage_trash_list",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/storage/files/trash"
+  },
+  "response": {
+    "body": {
+      "items": [
+        {
+          "deleted_at": "2026-10-20T08:00:00Z",
+          "id": "trs_0000000000000001",
+          "kind": "file",
+          "original_path": "Documents/existing.txt",
+          "purge_after": "2026-10-27T08:00:00Z",
+          "size": 13
+        }
+      ],
+      "retention_days": 7
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

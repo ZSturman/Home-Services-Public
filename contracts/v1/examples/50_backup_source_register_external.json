@@ -1,0 +1,42 @@
+{
+  "name": "backup_source_register_external",
+  "note": "status-only: the companion's own repository, which Home Services cannot read",
+  "request": {
+    "body": {
+      "host": "Example-MacBook-Pro.local",
+      "path": "/Users/example/Workspace/Projects",
+      "repository": "external:files-backups/mac-projects",
+      "tag": "job-mac-projects"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000003.fixture-secret-0003",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/backups/sources"
+  },
+  "response": {
+    "body": {
+      "host": "Example-MacBook-Pro.local",
+      "id": "src_0000000000000003",
+      "last_run": null,
+      "path": "/Users/example/Workspace/Projects",
+      "protection": {
+        "evidence": "companion_report",
+        "reason": "no successful run has been reported",
+        "state": "none",
+        "verified": false
+      },
+      "registered_at": "2026-10-20T08:01:30Z",
+      "repository": "external:files-backups/mac-projects",
+      "scheduler": "files-backups-companion",
+      "tag": "job-mac-projects"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 201
+  }
+}

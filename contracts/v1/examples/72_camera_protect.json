@@ -1,0 +1,33 @@
+{
+  "name": "camera_protect",
+  "request": {
+    "body": {
+      "protected": true
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000005.fixture-secret-0006",
+      "Home-Services-Contract": "1"
+    },
+    "method": "PUT",
+    "path": "/api/v1/cameras/workspace-pi-camera/recordings/evt_workspace-pi-camera_fixture_1/protected"
+  },
+  "response": {
+    "body": {
+      "active": false,
+      "camera_id": "workspace-pi-camera",
+      "ended_at": "2026-10-20T08:02:13Z",
+      "id": "evt_workspace-pi-camera_fixture_1",
+      "kind": "motion",
+      "playable": true,
+      "protected": true,
+      "size_bytes": 564,
+      "started_at": "2026-10-20T08:01:31Z"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

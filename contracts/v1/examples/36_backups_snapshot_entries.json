@@ -1,0 +1,42 @@
+{
+  "name": "backups_snapshot_entries",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/backups/snapshots/8172e6e648c42b4352e65cf32b2bf52b3f35641a7d886340feecd4a90c04e02d/entries",
+    "query": {
+      "path": "/srv/fixture/backup-source/Projects/Demo"
+    }
+  },
+  "response": {
+    "body": {
+      "entries": [
+        {
+          "kind": "file",
+          "modified_at": "2026-11-11T16:47:43.729151485-08:00",
+          "name": "README.md",
+          "path": "/srv/fixture/backup-source/Projects/Demo/README.md",
+          "size": 16
+        },
+        {
+          "kind": "file",
+          "modified_at": "2026-11-11T16:47:43.729236069-08:00",
+          "name": "notes.txt",
+          "path": "/srv/fixture/backup-source/Projects/Demo/notes.txt",
+          "size": 30
+        }
+      ],
+      "path": "/srv/fixture/backup-source/Projects/Demo",
+      "snapshot_id": "8172e6e648c42b4352e65cf32b2bf52b3f35641a7d886340feecd4a90c04e02d"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

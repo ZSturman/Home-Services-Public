@@ -1,0 +1,12 @@
+[Unit]
+Description=Home Services - apply restic retention (forget --prune)
+Requires=home-services-backup-disk-guard.service
+After=home-services-backup-disk-guard.service
+
+[Service]
+Type=oneshot
+User=kiosk
+Group=kiosk
+EnvironmentFile=-/etc/home-services/compat/secrets.env
+Environment=PATH=/opt/home-services/compat/current/venv/bin:/usr/bin:/bin
+ExecStart=/opt/home-services/compat/current/venv/bin/home-services-compat --config /etc/home-services/compat/config.yaml backup retention

@@ -1,0 +1,10 @@
+[Unit]
+Description=Apply restic retention once a day
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=600
+
+[Install]
+WantedBy=timers.target

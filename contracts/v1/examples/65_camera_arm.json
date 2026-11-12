@@ -1,0 +1,83 @@
+{
+  "name": "camera_arm",
+  "note": "arming enables motion notifications; recording runs either way",
+  "request": {
+    "body": {
+      "armed": true
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000005.fixture-secret-0006",
+      "Home-Services-Contract": "1"
+    },
+    "method": "PUT",
+    "path": "/api/v1/cameras/workspace-pi-camera/armed"
+  },
+  "response": {
+    "body": {
+      "armed": true,
+      "armed_updated_at": "2026-10-20T08:16:31Z",
+      "capabilities": {
+        "arming": {
+          "effect": "motion notifications only; recording continues while disarmed",
+          "state": "available"
+        },
+        "deletion": {
+          "granularity": "recording",
+          "state": "available"
+        },
+        "export": {
+          "format": "mp4",
+          "state": "available"
+        },
+        "history": {
+          "state": "available"
+        },
+        "live_view": {
+          "protocol": "hls",
+          "state": "available"
+        },
+        "motion_events": {
+          "detector": "frame_difference",
+          "state": "available"
+        },
+        "notifications": {
+          "state": "available",
+          "transport": "ntfy"
+        },
+        "playback": {
+          "protocol": "hls",
+          "state": "available"
+        },
+        "recording": {
+          "continuous_retention_hours": 168,
+          "mode": "continuous+motion",
+          "motion_retention_days": 30,
+          "state": "available"
+        },
+        "snapshot": {
+          "format": "jpeg",
+          "max_width": 1280,
+          "state": "available"
+        }
+      },
+      "engine": "hls-recorder",
+      "id": "workspace-pi-camera",
+      "kind": "usb",
+      "name": "Workspace Pi Camera",
+      "status": {
+        "armed": true,
+        "last_video_at": "2026-10-20T08:16:29Z",
+        "observed_at": "2026-10-20T08:16:31Z",
+        "reason": null,
+        "recording": true,
+        "state": "recording"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

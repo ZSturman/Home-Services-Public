@@ -1,0 +1,66 @@
+name: HomeServicesStatus
+options:
+  deploymentTarget:
+    macOS: "14.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_HARDENED_RUNTIME: YES
+    STATUS_APP_GROUP: $(DEVELOPMENT_TEAM).com.zacharysturman.homeservices.status
+targets:
+  HomeServicesStatus:
+    type: application
+    platform: macOS
+    sources: [App, Shared]
+    dependencies:
+      - target: HomeServicesWidget
+        embed: true
+    settings:
+      base:
+        PRODUCT_NAME: Home Services Status
+        PRODUCT_BUNDLE_IDENTIFIER: com.zacharysturman.homeservices.status
+    info:
+      path: Generated/App-Info.plist
+      properties:
+        CFBundleDisplayName: Home Services Status
+        CFBundleShortVersionString: "1.3"
+        CFBundleVersion: "4"
+        LSApplicationCategoryType: public.app-category.utilities
+        StatusAppGroup: $(STATUS_APP_GROUP)
+        CFBundleURLTypes:
+          - CFBundleURLName: com.zacharysturman.homeservices.status
+            CFBundleURLSchemes: [home-services-status]
+    entitlements:
+      path: Generated/App.entitlements
+      properties:
+        com.apple.security.application-groups: [$(STATUS_APP_GROUP)]
+  HomeServicesWidget:
+    type: app-extension
+    platform: macOS
+    sources: [Widget, Shared]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zacharysturman.homeservices.status.widget
+        APPLICATION_EXTENSION_API_ONLY: YES
+        ENABLE_APP_SANDBOX: YES
+        SKIP_INSTALL: YES
+    info:
+      path: Generated/Widget-Info.plist
+      properties:
+        CFBundleDisplayName: Home Services Status
+        CFBundleShortVersionString: "1.3"
+        CFBundleVersion: "4"
+        StatusAppGroup: $(STATUS_APP_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Generated/Widget.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.application-groups: [$(STATUS_APP_GROUP)]
+schemes:
+  HomeServicesStatus:
+    build:
+      targets:
+        HomeServicesStatus: all

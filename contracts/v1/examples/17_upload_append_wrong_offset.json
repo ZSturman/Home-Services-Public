@@ -1,0 +1,32 @@
+{
+  "name": "upload_append_wrong_offset",
+  "note": "resume from details.expected_offset",
+  "request": {
+    "body_bytes": 20,
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Content-Type": "application/octet-stream",
+      "Home-Services-Contract": "1",
+      "Upload-Offset": "0"
+    },
+    "method": "PUT",
+    "path": "/api/v1/transfers/uploads/upl_0000000000000001/content"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "offset_mismatch",
+        "details": {
+          "expected_offset": 20
+        },
+        "message": "offset does not match the server's acknowledged offset"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 409
+  }
+}

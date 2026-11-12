@@ -1,0 +1,82 @@
+# Home Services production configuration (first target: the existing Pi).
+# Install as /etc/home-services/config.toml (mode 0640, group home-services).
+# No secrets here: they live in /etc/home-services/secrets/ (mode 0600).
+environment = "production"
+# Application-data filesystem (SD/system disk ext4). Never the exFAT HDD.
+data_dir = "/var/lib/home-services"
+
+[network]
+port = 8790
+# Loopback behind Tailscale Serve HTTPS (see docs/INSTALL.md). To bind a
+# Tailscale/LAN address directly instead, list it or the interface here and
+# set tls_cert_file/tls_key_file; wildcard and public addresses are refused.
+bind_addresses = ["127.0.0.1"]
+bind_interfaces = []
+
+[mounts]
+probe = "linux"
+
+[[volumes]]
+id = "backup-hdd"
+mount = "/mnt/workspace-backup"
+# `sudo blkid -s UUID -o value <device>` -- must match the existing fstab UUID.
+uuid = "REPLACE-WITH-FILESYSTEM-UUID"
+fstype = "exfat"
+[volumes.roots]
+files = "home-services/files"
+staging = "home-services/staging"
+recordings = "home-services/recordings"
+restic_repository = "restic-repo"      # existing repository, read-only to Home Services
+legacy_media = "camera"                # predecessor snapshots/events, read-only
+# Optional: add with backup.companion_password_file below. Never a new writer.
+# companion_recovery = "files-backups/mac-projects"
+
+[limits]
+volume_reserve_bytes = 10000000000
+camera_quota_bytes = 200000000000
+staging_cap_bytes = 20000000000
+trash_retention_days = 7
+staging_abandon_hours = 24
+
+[backup]
+enabled = true
+password_file = "/etc/home-services/secrets/restic-password"
+restores_dir = "Restores"
+# Locator the Files & Backups Mac companion passes to its own restic.
+companion_repository = ""
+# Explicitly opt in to phone recovery of current Mac snapshots. Keep this
+# private host file mode 0600; the Mac companion still owns writes/checks/retention.
+# companion_password_file = "/etc/home-services/secrets/companion-restic-password"
+
+# Keep rules for `home-services backups retention-preview` (read-only).
+# These match the predecessor's daily `restic forget`; nothing applies them.
+[backup.retention]
+keep_hourly = 24
+keep_daily = 14
+keep_weekly = 8
+keep_monthly = 12
+
+# A series nothing writes any more (snapshots are kept and stay restorable):
+# no overdue/empty alerts for it. Owner decision; example only.
+# [[backup.retired_series]]
+# host = "mac.example.local"
+# tag = "mac-workspace"
+# reason = "replaced by the Files & Backups companion job"
+
+[cameras]
+engine = "none"   # until the feasibility gate passes on this host
+retention_days = 30               # footage overlapping motion events
+continuous_retention_hours = 168  # 7 days without motion
+[[cameras.devices]]
+id = "workspace-pi-camera"
+name = "Workspace Pi Camera"
+kind = "usb"
+
+[notifications]
+enabled = false
+ntfy_url_file = "/etc/home-services/secrets/ntfy-url"
+
+[legacy_contract]
+enabled = true
+workspace_volume = ""
+backup_volume = "backup-hdd"

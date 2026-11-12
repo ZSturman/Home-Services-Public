@@ -1,0 +1,30 @@
+{
+  "name": "storage_download_range",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1",
+      "Range": "bytes=0-4"
+    },
+    "method": "GET",
+    "path": "/api/v1/storage/files/content",
+    "query": {
+      "path": "Documents/existing (1).txt"
+    }
+  },
+  "response": {
+    "body": {
+      "bytes": 5,
+      "sha256": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+    },
+    "body_kind": "bytes",
+    "headers": {
+      "accept-ranges": "bytes",
+      "content-disposition": "attachment; filename*=utf-8''existing%20%281%29.txt",
+      "content-range": "bytes 0-4/63",
+      "content-type": "text/plain; charset=utf-8",
+      "home-services-contract": "1.6"
+    },
+    "status": 206
+  }
+}

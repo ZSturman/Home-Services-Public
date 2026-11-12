@@ -1,0 +1,40 @@
+{
+  "name": "media_legacy_events",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000002.fixture-secret-0002",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/media/legacy/events"
+  },
+  "response": {
+    "body": {
+      "events": [
+        {
+          "camera_name": "Fixture Camera",
+          "ended_at": "2026-09-10T12:31:22Z",
+          "id": "20260910T123045-7d79a4",
+          "last_motion_at": "2026-09-10T12:31:02Z",
+          "legacy_sync_claim": {
+            "note": "reported by the predecessor; not verified as a copy",
+            "synced": true
+          },
+          "media": [
+            "pre-00.jpg",
+            "recording.mp4"
+          ],
+          "read_only": true,
+          "source": "legacy",
+          "started_at": "2026-09-10T12:30:45Z"
+        }
+      ]
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

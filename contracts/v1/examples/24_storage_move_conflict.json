@@ -1,0 +1,34 @@
+{
+  "name": "storage_move_conflict",
+  "note": "conflict defaults to fail; keep_both picks 'name (1).ext'",
+  "request": {
+    "body": {
+      "conflict": "fail",
+      "from": "Photos/from-phone.txt",
+      "to": "Documents/existing.txt"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/storage/files/move"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "destination_exists",
+        "details": {
+          "path": "Documents/existing.txt"
+        },
+        "message": "an entry already exists at the destination"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 409
+  }
+}

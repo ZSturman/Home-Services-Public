@@ -1,0 +1,56 @@
+{
+  "name": "readiness",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/readiness"
+  },
+  "response": {
+    "body": {
+      "modules": {
+        "backups": {
+          "reason": "repository present",
+          "state": "ready"
+        },
+        "cameras": {
+          "reason": "engine_not_configured",
+          "state": "disabled"
+        },
+        "notifications": {
+          "delivered": 0,
+          "failed": 0,
+          "pending": 0,
+          "state": "disabled"
+        },
+        "state_store": {
+          "filesystem": "apfs",
+          "state": "ready"
+        },
+        "storage:files": {
+          "reason": "verified",
+          "state": "ready"
+        },
+        "storage:staging": {
+          "reason": "verified",
+          "state": "ready"
+        },
+        "volume:backup-hdd": {
+          "reason": "mounted with the configured UUID",
+          "state": "ready",
+          "volume_state": "verified"
+        }
+      },
+      "observed_at": "2026-10-20T08:00:00Z",
+      "server_id": "srv_0000000000000001"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

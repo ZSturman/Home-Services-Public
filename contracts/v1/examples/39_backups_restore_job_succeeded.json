@@ -1,0 +1,60 @@
+{
+  "name": "backups_restore_job_succeeded",
+  "note": "restored into a fresh files/Restores/<job id> directory",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/jobs/job_0000000000000003"
+  },
+  "response": {
+    "body": {
+      "attempts": 1,
+      "cancel_requested": false,
+      "created_at": "2026-10-20T08:00:00Z",
+      "error": null,
+      "finished_at": "2026-10-20T08:00:00Z",
+      "heartbeat": {
+        "age_seconds": 0.0,
+        "at": "2026-10-20T08:00:00Z"
+      },
+      "id": "job_0000000000000003",
+      "kind": "backup.restore",
+      "params": {
+        "include": [
+          "/srv/fixture/backup-source/Projects/Demo"
+        ],
+        "snapshot_id": "8172e6e648c42b4352e65cf32b2bf52b3f35641a7d886340feecd4a90c04e02d"
+      },
+      "progress": {
+        "age_seconds": null,
+        "at": null,
+        "data": null
+      },
+      "result": {
+        "destination": {
+          "path": "Restores/job_0000000000000003",
+          "root": "files"
+        },
+        "summary": {
+          "bytes_restored": 46,
+          "files_restored": 12,
+          "message_type": "summary",
+          "total_bytes": 46,
+          "total_files": 3
+        }
+      },
+      "source": null,
+      "started_at": "2026-10-20T08:00:00Z",
+      "state": "succeeded"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

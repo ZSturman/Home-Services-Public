@@ -1,0 +1,47 @@
+{
+  "name": "backup_source_register",
+  "request": {
+    "body": {
+      "host": "fixture-mac",
+      "path": "/srv/fixture/backup-source",
+      "tag": "mac-workspace"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000003.fixture-secret-0003",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/backups/sources"
+  },
+  "response": {
+    "body": {
+      "host": "fixture-mac",
+      "id": "src_0000000000000001",
+      "last_run": null,
+      "path": "/srv/fixture/backup-source",
+      "protection": {
+        "age_seconds": 0.0,
+        "contents": {
+          "bytes": 46,
+          "files": 2
+        },
+        "empty": false,
+        "evidence": "repository_snapshot",
+        "last_success_at": "2026-11-11T16:47:45.377894-08:00",
+        "overdue_after_seconds": 93600.0,
+        "snapshot_id": "8172e6e648c42b4352e65cf32b2bf52b3f35641a7d886340feecd4a90c04e02d",
+        "state": "current"
+      },
+      "registered_at": "2026-10-20T08:00:00Z",
+      "repository": "primary",
+      "scheduler": "files-backups-companion",
+      "tag": "mac-workspace"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 201
+  }
+}

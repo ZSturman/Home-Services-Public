@@ -1,0 +1,31 @@
+{
+  "name": "camera_live_session_unavailable",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000002.fixture-secret-0002",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/cameras/workspace-pi-camera/live-sessions"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "capability_unavailable",
+        "details": {
+          "capability": "live_view",
+          "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+          "reason": "engine_not_configured",
+          "state": "unavailable"
+        },
+        "message": "live view through Home Services is not configured on this host"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 409
+  }
+}

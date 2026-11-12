@@ -1,0 +1,33 @@
+{
+  "name": "legacy_backup_destination",
+  "request": {
+    "headers": {
+      "Home-Services-Contract": "1",
+      "X-Workspace-Token": "hst_tok_0000000000000004.fixture-secret-0004"
+    },
+    "method": "GET",
+    "path": "/api/backup/destination"
+  },
+  "response": {
+    "body": {
+      "device": "/dev/fixture1",
+      "filesystem": "exfat",
+      "mount": "/srv/fixture/volumes/backup-hdd",
+      "repository": "/srv/fixture/volumes/backup-hdd/restic-repo",
+      "repository_state": "not_checked",
+      "state": "mounted",
+      "usage": {
+        "available_bytes": 210692399104,
+        "total_bytes": 994610155520,
+        "used_bytes": 783917756416
+      },
+      "uuid": "DEV-BACKUP-0001"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "storage_volumes",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/storage/volumes"
+  },
+  "response": {
+    "body": {
+      "volumes": [
+        {
+          "capacity": {
+            "free_bytes": 210681536512,
+            "total_bytes": 994610155520
+          },
+          "filesystem": "exfat",
+          "id": "backup-hdd",
+          "reason": "mounted with the configured UUID",
+          "roots": [
+            "files",
+            "legacy_media",
+            "recordings",
+            "restic_repository",
+            "staging"
+          ],
+          "state": "verified"
+        }
+      ]
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

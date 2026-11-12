@@ -1,0 +1,51 @@
+{
+  "name": "pairing_exchange",
+  "request": {
+    "body": {
+      "client_secret": "fixture-client-secret-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "device_name": "Fixture phone",
+      "invitation_id": "pair_0000000000000001",
+      "secret": "fixture-secret-0013"
+    },
+    "headers": {
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/pairing/exchange"
+  },
+  "response": {
+    "body": {
+      "base_url": "https://host.example.net:8443",
+      "connection": {
+        "allowed_scopes": [
+          "status:read"
+        ],
+        "device_name": "Fixture phone",
+        "id": "conn_0000000000000001",
+        "preferences": {},
+        "preset": "home-page",
+        "token": {
+          "created_at": "2026-10-20T08:16:31Z",
+          "expires_at": null,
+          "id": "tok_000000000000000a",
+          "last_used_at": "2026-10-20T08:16:31Z",
+          "name": "Home Page fixture",
+          "revoked_at": null,
+          "scopes": [
+            "status:read"
+          ]
+        }
+      },
+      "protocol": 1,
+      "server_id": "srv_0000000000000001",
+      "token": "hst_tok_000000000000000a.fixture-client-secret-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

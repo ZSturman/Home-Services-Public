@@ -1,0 +1,52 @@
+{
+  "name": "backup_run_finish_external",
+  "request": {
+    "body": {
+      "snapshot_id": "af8c64bee44c88267d1b97c87092085d8dc313c80e24a0f9df1e9ee0f1cf9053",
+      "state": "succeeded",
+      "summary": {
+        "data_added": 52428800,
+        "total_bytes": 114681330501,
+        "total_files": 684631
+      }
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000003.fixture-secret-0003",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/backups/runs/run_0000000000000002/finish"
+  },
+  "response": {
+    "body": {
+      "error": null,
+      "finished_at": "2026-10-20T08:01:30Z",
+      "heartbeat": {
+        "age_seconds": 0.0,
+        "at": "2026-10-20T08:01:30Z"
+      },
+      "id": "run_0000000000000002",
+      "lease_expires_at": null,
+      "progress": {
+        "age_seconds": null,
+        "at": null,
+        "data": null
+      },
+      "snapshot_id": "af8c64bee44c88267d1b97c87092085d8dc313c80e24a0f9df1e9ee0f1cf9053",
+      "source_id": "src_0000000000000003",
+      "started_at": "2026-10-20T08:01:30Z",
+      "state": "succeeded",
+      "summary": {
+        "data_added": 52428800,
+        "total_bytes": 114681330501,
+        "total_files": 684631
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

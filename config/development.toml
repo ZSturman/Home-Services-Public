@@ -1,0 +1,48 @@
+# Isolated development configuration. Every path is inside the ignored
+# ../.dev/ directory created by `home-services dev-fixtures`. The fixture
+# mount probe is refused unless environment = "development".
+environment = "development"
+data_dir = "../.dev/data"
+
+[network]
+port = 8790
+bind_addresses = ["127.0.0.1"]
+
+[mounts]
+probe = "fixture"
+fixture_table = "../.dev/mounts.json"
+
+[[volumes]]
+id = "backup-hdd"
+mount = "../.dev/volumes/backup-hdd"
+uuid = "DEV-BACKUP-0001"
+fstype = "exfat"
+[volumes.roots]
+files = "home-services/files"
+staging = "home-services/staging"
+recordings = "home-services/recordings"
+restic_repository = "restic-repo"
+legacy_media = "camera"
+
+[limits]
+volume_reserve_bytes = 1000000
+staging_cap_bytes = 2000000000
+
+[backup]
+enabled = true
+password_file = "../.dev/secrets/restic-password"
+companion_repository = "sftp:dev@127.0.0.1:/dev/null"
+
+[cameras]
+engine = "none"
+[[cameras.devices]]
+id = "workspace-pi-camera"
+name = "Workspace Pi Camera"
+kind = "usb"
+
+[notifications]
+enabled = false
+
+[legacy_contract]
+enabled = true
+backup_volume = "backup-hdd"

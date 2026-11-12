@@ -1,0 +1,21 @@
+[Unit]
+Description=Home Services read-only restic snapshot browser
+RequiresMountsFor=/mnt/workspace-backup
+After=mnt-workspace\x2dbackup.mount network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+EnvironmentFile=/etc/home-services/compat/secrets.env
+ExecStartPre=/usr/bin/test -d /mnt/workspace-backup/restic-repo
+ExecStartPre=/usr/bin/mkdir -p /srv/workspace-backups
+# `mount` is read-only.  Holding a repository lock forever here prevented the
+# scheduled retention job from ever acquiring its required write lock.
+ExecStart=/bin/sh -c 'RESTIC_PASSWORD="$WORKSPACE_BACKUP_PASSWORD" exec /usr/bin/restic -r /mnt/workspace-backup/restic-repo mount --no-lock --allow-other /srv/workspace-backups'
+ExecStop=/bin/fusermount3 -u /srv/workspace-backups
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

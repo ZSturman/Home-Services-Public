@@ -1,0 +1,31 @@
+{
+  "name": "storage_move",
+  "request": {
+    "body": {
+      "from": "Documents/existing (1).txt",
+      "to": "Photos/from-phone.txt"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/storage/files/move"
+  },
+  "response": {
+    "body": {
+      "from": "Documents/existing (1).txt",
+      "kind": "file",
+      "modified_at": "2026-11-12T00:47:46.095104Z",
+      "name": "from-phone.txt",
+      "path": "Photos/from-phone.txt",
+      "size": 63
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

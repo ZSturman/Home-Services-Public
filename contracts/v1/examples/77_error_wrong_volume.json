@@ -1,0 +1,30 @@
+{
+  "name": "error_wrong_volume",
+  "note": "a different disk at the same mount point",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/storage/files/entries"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "volume_unavailable",
+        "details": {
+          "state": "wrong_volume",
+          "volume_id": "backup-hdd"
+        },
+        "message": "volume 'backup-hdd' unavailable: mounted filesystem UUID 'SOME-OTHER-DISK' does not match the configured volume"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 503
+  }
+}

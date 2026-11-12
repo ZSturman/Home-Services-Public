@@ -1,0 +1,29 @@
+{
+  "name": "storage_capacity",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/storage/capacity"
+  },
+  "response": {
+    "body": {
+      "available_for_uploads_bytes": 210680536512,
+      "free_bytes": 210681536512,
+      "reserved_by_uploads_bytes": 0,
+      "staging_cap_bytes": 2000000000,
+      "staging_used_bytes": 0,
+      "total_bytes": 994610155520,
+      "volume_id": "backup-hdd",
+      "volume_reserve_bytes": 1000000
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

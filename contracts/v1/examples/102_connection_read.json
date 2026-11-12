@@ -1,0 +1,40 @@
+{
+  "name": "connection_read",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_000000000000000a.fixture-client-secret-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/connection"
+  },
+  "response": {
+    "body": {
+      "allowed_scopes": [
+        "status:read"
+      ],
+      "device_name": "Fixture phone",
+      "id": "conn_0000000000000001",
+      "preferences": {},
+      "preset": "home-page",
+      "token": {
+        "created_at": "2026-10-20T08:16:31Z",
+        "expires_at": null,
+        "id": "tok_000000000000000a",
+        "last_used_at": "2026-10-20T08:16:31Z",
+        "name": "Home Page fixture",
+        "revoked_at": null,
+        "scopes": [
+          "status:read"
+        ]
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

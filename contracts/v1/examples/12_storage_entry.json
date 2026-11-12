@@ -1,0 +1,29 @@
+{
+  "name": "storage_entry",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/storage/files/entry",
+    "query": {
+      "path": "Documents/existing.txt"
+    }
+  },
+  "response": {
+    "body": {
+      "kind": "file",
+      "modified_at": "2026-10-19T08:53:20Z",
+      "name": "existing.txt",
+      "path": "Documents/existing.txt",
+      "size": 13
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "articles_publish_rejected",
+  "request": {
+    "body": {
+      "action": "publish",
+      "workspace_id": "fixture-articles"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000007.fixture-secret-0010",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/articles/review"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "bad_request",
+        "details": {},
+        "message": "Unsupported article action; publication and generation are not offered"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 400
+  }
+}

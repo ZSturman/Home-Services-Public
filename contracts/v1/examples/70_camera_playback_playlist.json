@@ -1,0 +1,24 @@
+{
+  "name": "camera_playback_playlist",
+  "note": "VOD HLS over the stored chunks",
+  "request": {
+    "headers": {
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/media/sessions/fixture-secret-0008/index.m3u8"
+  },
+  "response": {
+    "body": {
+      "bytes": 158,
+      "sha256": "3094e558d07f744ea381bdd3d9feea395597f7771f34a52cdd73db39b26b0717"
+    },
+    "body_kind": "bytes",
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/vnd.apple.mpegurl",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

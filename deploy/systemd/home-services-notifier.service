@@ -1,0 +1,18 @@
+[Unit]
+Description=Home Services ntfy notification outbox
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=home-services
+Group=home-services
+Environment=HOME_SERVICES_CONFIG=/etc/home-services/config.toml
+WorkingDirectory=/var/lib/home-services
+ExecStart=/opt/home-services/current/venv/bin/home-services notifier
+Restart=always
+RestartSec=10
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,69 @@
+{
+  "name": "opportunities_applied",
+  "request": {
+    "body": {
+      "action": "resolve",
+      "request_id": "fixture-decision",
+      "resources": {
+        "/api/v2/review/fixture-case": {
+          "decision": "approve",
+          "id": "fixture-case",
+          "revision": 5,
+          "stage": "Approved"
+        }
+      },
+      "result": {
+        "case_revision": 5,
+        "response": {
+          "decision": "approve",
+          "id": "fixture-case",
+          "revision": 5,
+          "stage": "Approved"
+        },
+        "status": "ok"
+      },
+      "state": "applied",
+      "workspace_id": "fixture-opportunities"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000008.fixture-secret-0011",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/opportunities/relay"
+  },
+  "response": {
+    "body": {
+      "companion_seen_at": "2026-10-20T08:16:31Z",
+      "operation": {
+        "after": null,
+        "case_id": "fixture-case",
+        "created_at": "2026-10-20T08:16:31Z",
+        "path": "/api/v2/review/fixture-case/decision",
+        "request_id": "fixture-decision",
+        "result": {
+          "case_revision": 5,
+          "response": {
+            "decision": "approve",
+            "id": "fixture-case",
+            "revision": 5,
+            "stage": "Approved"
+          },
+          "status": "ok"
+        },
+        "state": "applied",
+        "updated_at": "2026-10-20T08:16:31Z"
+      },
+      "server_id": "srv_0000000000000001",
+      "status": "ok",
+      "workspace_id": "fixture-opportunities"
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

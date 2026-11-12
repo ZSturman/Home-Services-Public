@@ -1,0 +1,30 @@
+{
+  "name": "legacy_storage_contract",
+  "request": {
+    "headers": {
+      "Home-Services-Contract": "1",
+      "X-Workspace-Token": "hst_tok_0000000000000004.fixture-secret-0004"
+    },
+    "method": "GET",
+    "path": "/api/storage/contract"
+  },
+  "response": {
+    "body": {
+      "detail": "No workspace volume is configured. Workspace synchronization is pending that hardware.",
+      "mode": "pending",
+      "production_sync_safe": false,
+      "project_directory_creation_allowed": false,
+      "storage_health": "warning",
+      "storage_health_detail": "No workspace volume is configured. Workspace synchronization is pending that hardware.",
+      "syncthing_workspace_folder": "unknown",
+      "workspace_disk_mounted": false,
+      "workspace_root": null
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

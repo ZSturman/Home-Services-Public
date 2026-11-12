@@ -1,0 +1,54 @@
+{
+  "name": "backup_run_heartbeat",
+  "request": {
+    "body": {
+      "progress": {
+        "bytes_done": 52428800,
+        "files_done": 1200,
+        "percent_done": 0.42,
+        "total_bytes": 125829120,
+        "total_files": 3000
+      }
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000003.fixture-secret-0003",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/backups/runs/run_0000000000000001/heartbeat"
+  },
+  "response": {
+    "body": {
+      "error": null,
+      "finished_at": null,
+      "heartbeat": {
+        "age_seconds": 0.0,
+        "at": "2026-10-20T08:00:30Z"
+      },
+      "id": "run_0000000000000001",
+      "lease_expires_at": "2026-10-20T08:15:30Z",
+      "progress": {
+        "age_seconds": 0.0,
+        "at": "2026-10-20T08:00:30Z",
+        "data": {
+          "bytes_done": 52428800,
+          "files_done": 1200,
+          "percent_done": 0.42,
+          "total_bytes": 125829120,
+          "total_files": 3000
+        }
+      },
+      "snapshot_id": null,
+      "source_id": "src_0000000000000001",
+      "started_at": "2026-10-20T08:00:00Z",
+      "state": "running",
+      "summary": null
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

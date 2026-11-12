@@ -1,0 +1,34 @@
+{
+  "name": "camera_arm_unavailable",
+  "request": {
+    "body": {
+      "armed": true
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000002.fixture-secret-0002",
+      "Home-Services-Contract": "1"
+    },
+    "method": "PUT",
+    "path": "/api/v1/cameras/workspace-pi-camera/armed"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "capability_unavailable",
+        "details": {
+          "capability": "arming",
+          "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+          "reason": "engine_not_configured",
+          "state": "unavailable"
+        },
+        "message": "cannot arm: no recording engine is configured on this host"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 409
+  }
+}

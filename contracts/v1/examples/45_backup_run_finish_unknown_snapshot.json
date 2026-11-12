@@ -1,0 +1,33 @@
+{
+  "name": "backup_run_finish_unknown_snapshot",
+  "note": "success is accepted only for a snapshot the repository contains for this source; the run stays live",
+  "request": {
+    "body": {
+      "snapshot_id": "4515c74846f53f1e9cc02631c6e74d0594c105c60ecbb5876f35eeaba39a8fc6",
+      "state": "succeeded"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000003.fixture-secret-0003",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/backups/runs/run_0000000000000001/finish"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "snapshot_not_found",
+        "details": {
+          "snapshot_id": "4515c74846f53f1e9cc02631c6e74d0594c105c60ecbb5876f35eeaba39a8fc6"
+        },
+        "message": "the repository does not contain that snapshot"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 409
+  }
+}

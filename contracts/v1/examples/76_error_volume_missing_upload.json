@@ -1,0 +1,34 @@
+{
+  "name": "error_volume_missing_upload",
+  "request": {
+    "body": {
+      "path": "Documents/new.txt",
+      "root": "files",
+      "size": 3
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/transfers/uploads"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "volume_unavailable",
+        "details": {
+          "state": "missing",
+          "volume_id": "backup-hdd"
+        },
+        "message": "volume 'backup-hdd' unavailable: volume is not mounted at its configured mount point"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 503
+  }
+}

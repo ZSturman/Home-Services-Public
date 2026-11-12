@@ -1,0 +1,29 @@
+{
+  "name": "storage_mkdir",
+  "request": {
+    "body": {
+      "path": "Photos"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/storage/files/directories"
+  },
+  "response": {
+    "body": {
+      "kind": "directory",
+      "modified_at": "2026-11-12T00:47:46.068384Z",
+      "name": "Photos",
+      "path": "Photos",
+      "size": null
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 201
+  }
+}

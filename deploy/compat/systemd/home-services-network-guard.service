@@ -1,0 +1,10 @@
+[Unit]
+Description=Home Services - self-heal wlan0/tailscaled after a reboot
+After=NetworkManager.service
+
+[Service]
+Type=oneshot
+User=kiosk
+Group=kiosk
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/opt/home-services/compat/current/network-guard.sh

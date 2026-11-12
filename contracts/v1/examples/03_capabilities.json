@@ -1,0 +1,224 @@
+{
+  "name": "capabilities",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/capabilities"
+  },
+  "response": {
+    "body": {
+      "capabilities": {
+        "articles": {
+          "review_sync": {
+            "canonical_writer": "mac-companion",
+            "protocol": 1,
+            "publishes": false,
+            "snapshot_quota_bytes": 512000000,
+            "state": "available"
+          }
+        },
+        "backups": {
+          "archived_file_download": {
+            "state": "available"
+          },
+          "integrity_check": {
+            "reason": "not owned by Home Services during migration",
+            "state": "unavailable"
+          },
+          "repository_initialization": {
+            "reason": "never performed by Home Services",
+            "state": "unavailable"
+          },
+          "repository_status": {
+            "state": "available"
+          },
+          "restore_jobs": {
+            "destination": "fresh directory under files/Restores",
+            "state": "available"
+          },
+          "retention_prune": {
+            "reason": "not owned by Home Services during migration",
+            "state": "unavailable"
+          },
+          "snapshots": {
+            "state": "available"
+          },
+          "source_registration": {
+            "companion_repository": "sftp:backup@host.example.net:/mnt/workspace-backup/restic-repo",
+            "state": "available"
+          }
+        },
+        "cameras": {
+          "engine": "none",
+          "per_camera": {
+            "workspace-pi-camera": {
+              "arming": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              },
+              "deletion": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              },
+              "export": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              },
+              "history": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              },
+              "live_view": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              },
+              "motion_events": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              },
+              "notifications": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              },
+              "playback": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              },
+              "recording": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              },
+              "snapshot": {
+                "message": "No recording engine is configured on this host (cameras.engine = \"none\").",
+                "reason": "engine_not_configured",
+                "state": "unavailable"
+              }
+            }
+          }
+        },
+        "chewsense": {
+          "mailbox": {
+            "deleted_after_ack": true,
+            "encrypted_by_client": true,
+            "held_quota_bytes": 21474836480,
+            "max_deposit_bytes": 4294967296,
+            "protocol": 1,
+            "state": "available"
+          }
+        },
+        "connections": {
+          "pairing": {
+            "invitation_ttl_seconds": 300,
+            "methods": [
+              "qr",
+              "paste"
+            ],
+            "per_device_credentials": true,
+            "protocol": 1,
+            "state": "available"
+          }
+        },
+        "legacy": {
+          "storage_contract": {
+            "state": "available"
+          }
+        },
+        "media": {
+          "legacy_events": {
+            "read_only": true,
+            "state": "available"
+          },
+          "media_sessions": {
+            "state": "available",
+            "ttl_seconds": 900
+          }
+        },
+        "notifications": {
+          "ntfy_outbox": {
+            "reason": "notifications disabled",
+            "state": "unavailable"
+          }
+        },
+        "opportunities": {
+          "review_relay": {
+            "canonical_writer": "mac-companion",
+            "protocol": 1,
+            "resource_quota_bytes": 128000000,
+            "sends_email": false,
+            "state": "available"
+          }
+        },
+        "storage": {
+          "browse": {
+            "state": "available"
+          },
+          "capacity": {
+            "state": "available"
+          },
+          "create_directory": {
+            "state": "available"
+          },
+          "download": {
+            "range_requests": true,
+            "state": "available"
+          },
+          "managed_trash": {
+            "retention_days": 7,
+            "state": "available"
+          },
+          "move": {
+            "conflict_policies": [
+              "fail",
+              "keep_both"
+            ],
+            "state": "available"
+          },
+          "permanent_delete": {
+            "reason": "not offered; managed Trash purges after the retention window",
+            "state": "unavailable"
+          },
+          "volume_identity_checks": {
+            "state": "available",
+            "uuid_verified": true
+          }
+        },
+        "transfers": {
+          "resumable_upload": {
+            "abandon_after_hours": 24,
+            "conflict_policies": [
+              "keep_both",
+              "fail"
+            ],
+            "max_chunk_bytes": 16777216,
+            "staging_cap_bytes": 2000000000,
+            "state": "available",
+            "verification": [
+              "size",
+              "sha256"
+            ]
+          }
+        }
+      },
+      "observed_at": "2026-10-20T08:00:00Z",
+      "server_id": "srv_0000000000000001"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

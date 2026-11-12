@@ -1,0 +1,41 @@
+{
+  "name": "opportunities_sync",
+  "request": {
+    "body": {
+      "action": "sync",
+      "resources": {
+        "/api/mobile/summary": {
+          "to_review": 1
+        },
+        "/api/v2/review/fixture-case": {
+          "decision": "",
+          "id": "fixture-case",
+          "revision": 4,
+          "stage": "Awaiting Review"
+        }
+      },
+      "workspace_id": "fixture-opportunities"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000008.fixture-secret-0011",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/opportunities/relay"
+  },
+  "response": {
+    "body": {
+      "companion_seen_at": "2026-10-20T08:16:31Z",
+      "server_id": "srv_0000000000000001",
+      "status": "ok",
+      "workspace_id": "fixture-opportunities"
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "camera_delete_active_rejected",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000005.fixture-secret-0006",
+      "Home-Services-Contract": "1"
+    },
+    "method": "DELETE",
+    "path": "/api/v1/cameras/workspace-pi-camera/recordings/evt_workspace-pi-camera_fixture_2"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "recording_active",
+        "details": {},
+        "message": "the recording is still in progress"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 409
+  }
+}

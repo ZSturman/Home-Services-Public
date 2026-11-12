@@ -1,0 +1,72 @@
+{
+  "name": "backup_source_status",
+  "note": "protection comes from the newest repository snapshot with the source's tag and path",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/backups/sources/src_0000000000000001"
+  },
+  "response": {
+    "body": {
+      "host": "fixture-mac",
+      "id": "src_0000000000000001",
+      "last_run": {
+        "error": null,
+        "finished_at": "2026-10-20T08:01:30Z",
+        "heartbeat": {
+          "age_seconds": 60.0,
+          "at": "2026-10-20T08:00:30Z"
+        },
+        "id": "run_0000000000000001",
+        "lease_expires_at": null,
+        "progress": {
+          "age_seconds": 60.0,
+          "at": "2026-10-20T08:00:30Z",
+          "data": {
+            "bytes_done": 52428800,
+            "files_done": 1200,
+            "percent_done": 0.42,
+            "total_bytes": 125829120,
+            "total_files": 3000
+          }
+        },
+        "snapshot_id": "8172e6e648c42b4352e65cf32b2bf52b3f35641a7d886340feecd4a90c04e02d",
+        "source_id": "src_0000000000000001",
+        "started_at": "2026-10-20T08:00:00Z",
+        "state": "succeeded",
+        "summary": {
+          "data_added": 1048576,
+          "files_changed": 3,
+          "files_new": 12
+        }
+      },
+      "path": "/srv/fixture/backup-source",
+      "protection": {
+        "age_seconds": 0.0,
+        "contents": {
+          "bytes": 46,
+          "files": 2
+        },
+        "empty": false,
+        "evidence": "repository_snapshot",
+        "last_success_at": "2026-11-11T16:47:45.377894-08:00",
+        "overdue_after_seconds": 93600.0,
+        "snapshot_id": "8172e6e648c42b4352e65cf32b2bf52b3f35641a7d886340feecd4a90c04e02d",
+        "state": "current"
+      },
+      "registered_at": "2026-10-20T08:00:00Z",
+      "repository": "primary",
+      "scheduler": "files-backups-companion",
+      "tag": "mac-workspace"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

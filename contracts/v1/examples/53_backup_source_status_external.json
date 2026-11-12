@@ -1,0 +1,67 @@
+{
+  "name": "backup_source_status_external",
+  "note": "protection.evidence is companion_report and verified is false",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/backups/sources/src_0000000000000003"
+  },
+  "response": {
+    "body": {
+      "host": "Example-MacBook-Pro.local",
+      "id": "src_0000000000000003",
+      "last_run": {
+        "error": null,
+        "finished_at": "2026-10-20T08:01:30Z",
+        "heartbeat": {
+          "age_seconds": 0.0,
+          "at": "2026-10-20T08:01:30Z"
+        },
+        "id": "run_0000000000000002",
+        "lease_expires_at": null,
+        "progress": {
+          "age_seconds": null,
+          "at": null,
+          "data": null
+        },
+        "snapshot_id": "af8c64bee44c88267d1b97c87092085d8dc313c80e24a0f9df1e9ee0f1cf9053",
+        "source_id": "src_0000000000000003",
+        "started_at": "2026-10-20T08:01:30Z",
+        "state": "succeeded",
+        "summary": {
+          "data_added": 52428800,
+          "total_bytes": 114681330501,
+          "total_files": 684631
+        }
+      },
+      "path": "/Users/example/Workspace/Projects",
+      "protection": {
+        "age_seconds": 0.0,
+        "contents": {
+          "bytes": 114681330501,
+          "files": 684631
+        },
+        "empty": false,
+        "evidence": "companion_report",
+        "last_success_at": "2026-10-20T08:01:30Z",
+        "overdue_after_seconds": 93600.0,
+        "snapshot_id": "af8c64bee44c88267d1b97c87092085d8dc313c80e24a0f9df1e9ee0f1cf9053",
+        "state": "current",
+        "verified": false
+      },
+      "registered_at": "2026-10-20T08:01:30Z",
+      "repository": "external:files-backups/mac-projects",
+      "scheduler": "files-backups-companion",
+      "tag": "job-mac-projects"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

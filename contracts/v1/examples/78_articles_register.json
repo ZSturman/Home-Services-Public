@@ -1,0 +1,31 @@
+{
+  "name": "articles_register",
+  "request": {
+    "body": {
+      "action": "register",
+      "workspace_id": "fixture-articles"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000006.fixture-secret-0009",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/articles/review"
+  },
+  "response": {
+    "body": {
+      "companion_seen_at": null,
+      "revisions": {},
+      "server_id": "srv_0000000000000001",
+      "status": "ok",
+      "workspace_id": "fixture-articles"
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

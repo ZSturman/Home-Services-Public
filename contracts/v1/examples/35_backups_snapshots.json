@@ -1,0 +1,39 @@
+{
+  "name": "backups_snapshots",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/backups/snapshots"
+  },
+  "response": {
+    "body": {
+      "snapshots": [
+        {
+          "contents": {
+            "bytes": 46,
+            "files": 2
+          },
+          "hostname": "fixture-mac",
+          "id": "8172e6e648c42b4352e65cf32b2bf52b3f35641a7d886340feecd4a90c04e02d",
+          "paths": [
+            "/srv/fixture/backup-source"
+          ],
+          "short_id": "8172e6e6",
+          "tags": [
+            "mac-workspace"
+          ],
+          "time": "2026-11-11T16:47:45.377894-08:00"
+        }
+      ]
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "name": "bootstrap",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/bootstrap"
+  },
+  "response": {
+    "body": {
+      "cameras": [
+        {
+          "id": "workspace-pi-camera",
+          "name": "Workspace Pi Camera"
+        }
+      ],
+      "contract": {
+        "header": "Home-Services-Contract",
+        "supported_majors": [
+          1
+        ],
+        "version": "1.6"
+      },
+      "environment": "development",
+      "product": "home-services",
+      "roots": [
+        {
+          "role": "files",
+          "volume_id": "backup-hdd",
+          "writable": true
+        },
+        {
+          "role": "staging",
+          "volume_id": "backup-hdd",
+          "writable": true
+        },
+        {
+          "role": "recordings",
+          "volume_id": "backup-hdd",
+          "writable": true
+        },
+        {
+          "role": "restic_repository",
+          "volume_id": "backup-hdd",
+          "writable": false
+        },
+        {
+          "role": "legacy_media",
+          "volume_id": "backup-hdd",
+          "writable": false
+        }
+      ],
+      "server_id": "srv_0000000000000001",
+      "token": {
+        "id": "tok_0000000000000001",
+        "name": "Files & Backups (iPhone)",
+        "scopes": [
+          "backups:read",
+          "backups:restore",
+          "jobs:read",
+          "jobs:write",
+          "storage:read",
+          "storage:write",
+          "transfers:write"
+        ]
+      },
+      "version": "0.4.10"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

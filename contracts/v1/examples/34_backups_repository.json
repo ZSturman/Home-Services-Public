@@ -1,0 +1,33 @@
+{
+  "name": "backups_repository",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/backups/repository"
+  },
+  "response": {
+    "body": {
+      "integrity": {
+        "reason": "integrity checks remain with the existing scheduled job during migration",
+        "state": "not_owned"
+      },
+      "password_configured": true,
+      "reason": "repository found",
+      "retention": {
+        "reason": "forget/prune remain with the existing scheduled job during migration",
+        "state": "not_owned"
+      },
+      "state": "present",
+      "writer_lease": null
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

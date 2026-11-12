@@ -1,0 +1,40 @@
+{
+  "name": "articles_get",
+  "request": {
+    "body": {
+      "action": "get",
+      "article_id": "fixture-article"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000007.fixture-secret-0010",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/articles/review"
+  },
+  "response": {
+    "body": {
+      "article": {
+        "id": "fixture-article",
+        "markdown": "An isolated article body.",
+        "review_digest": "digest-1",
+        "revision": "revision-1",
+        "title": "A reviewable article",
+        "workspace": {
+          "complete": true
+        }
+      },
+      "companion_seen_at": "2026-10-20T08:16:31Z",
+      "server_id": "srv_0000000000000001",
+      "status": "ok",
+      "workspace_id": "fixture-articles"
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

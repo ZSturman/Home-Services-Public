@@ -1,0 +1,25 @@
+{
+  "name": "media_session_fetch",
+  "note": "no Authorization header: the session URL is the credential",
+  "request": {
+    "headers": {
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/media/sessions/fixture-secret-0005"
+  },
+  "response": {
+    "body": {
+      "bytes": 76,
+      "sha256": "ce17069e4b5a7d6620cd6b0e7129e914e1152f28420e7ff952190426be01abd7"
+    },
+    "body_kind": "bytes",
+    "headers": {
+      "accept-ranges": "bytes",
+      "cache-control": "private, no-store",
+      "content-type": "video/mp4",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

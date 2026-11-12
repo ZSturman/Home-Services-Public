@@ -1,0 +1,32 @@
+{
+  "name": "connection_cannot_escalate",
+  "request": {
+    "body": {
+      "scopes": [
+        "storage:write"
+      ]
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_000000000000000a.fixture-client-secret-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Home-Services-Contract": "1"
+    },
+    "method": "PATCH",
+    "path": "/api/v1/connection"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "forbidden",
+        "details": {},
+        "message": "permissions cannot exceed those approved at pairing"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 403
+  }
+}

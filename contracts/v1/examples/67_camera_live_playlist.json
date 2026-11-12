@@ -1,0 +1,24 @@
+{
+  "name": "camera_live_playlist",
+  "note": "no Authorization header; sliding expiry while fetched",
+  "request": {
+    "headers": {
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/media/sessions/fixture-secret-0007/index.m3u8"
+  },
+  "response": {
+    "body": {
+      "bytes": 107,
+      "sha256": "4b9c2560999be9ee828d1cd59d7106c81684cbfdbe1704d08451c760182f9cc4"
+    },
+    "body_kind": "bytes",
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/vnd.apple.mpegurl",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

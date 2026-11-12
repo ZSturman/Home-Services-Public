@@ -1,0 +1,36 @@
+[project]
+name = "home-services-compat"
+version = "0.1.0"
+description = "Home Services compatibility runtime for migrated camera, recovery, and Mac bridge services"
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml>=6.0",
+    "click>=8.1",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "httpx>=0.27",
+    "pydantic>=2.6",
+    "jinja2>=3.1",
+    "python-multipart>=0.0.9",
+    "numpy>=1.26",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov"]
+# Only needed on hosts with tapo.enabled: true in config.yaml -- imported
+# lazily in tapo.py so its absence never breaks any other command.
+power = ["tapo>=0.9.0"]
+
+[project.scripts]
+home-services-compat = "workspace_util.cli:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

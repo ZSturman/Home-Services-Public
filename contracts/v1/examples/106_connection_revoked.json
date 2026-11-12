@@ -1,0 +1,27 @@
+{
+  "name": "connection_revoked",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_000000000000000a.fixture-client-secret-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/connection"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "unauthenticated",
+        "details": {},
+        "message": "token revoked"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 401
+  }
+}

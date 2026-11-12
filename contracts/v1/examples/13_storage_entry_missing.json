@@ -1,0 +1,31 @@
+{
+  "name": "storage_entry_missing",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/storage/files/entry",
+    "query": {
+      "path": "Documents/nope.txt"
+    }
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "not_found",
+        "details": {
+          "path": "Documents/nope.txt"
+        },
+        "message": "entry not found"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 404
+  }
+}

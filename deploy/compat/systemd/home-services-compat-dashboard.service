@@ -1,0 +1,34 @@
+[Unit]
+Description=Home Services - mobile dashboard
+# Deliberately does NOT Require= workspace-disk-guard: the dashboard must
+# come up and clearly show "workspace disk pending" even when no SSD/NVMe is
+# attached yet -- see workspace_state.py. Only the backup path is gated on
+# its own disk guard (in workspace-backup.service).
+After=network-online.target tailscaled.service
+Wants=network-online.target tailscaled.service
+
+[Service]
+Type=simple
+User=kiosk
+Group=kiosk
+EnvironmentFile=-/etc/home-services/compat/secrets.env
+Environment=PATH=/opt/home-services/compat/current/venv/bin:/usr/bin:/bin
+WorkingDirectory=/opt/home-services/compat/current
+# An empty bind_host intentionally resolves to this Pi's Tailscale address.
+# Do not let the safe loopback fallback win while tailscaled is still
+# initializing: Home Platform reaches this sibling service over that private
+# address from its Compose network.
+ExecStartPre=/usr/bin/tailscale ip -4
+ExecStart=/opt/home-services/compat/current/venv/bin/python -m workspace_util.dashboard.serve --config /etc/home-services/compat/config.yaml
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+# Do not use ProtectSystem= here.  It gives the long-running dashboard a
+# private mount namespace; a USB drive mounted after the dashboard starts is
+# then invisible to it, which previously made the API report the SD card as
+# the backup disk.  The process still has no privilege escalation and runs as
+# the unprivileged kiosk user; filesystem writes remain limited by ownership.
+ProtectHome=read-only
+
+[Install]
+WantedBy=multi-user.target

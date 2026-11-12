@@ -1,0 +1,241 @@
+# Workspace Sync & Backup Utility — main configuration
+#
+# Copy this file to config/config.yaml (Mac) and /etc/home-services/compat/config.yaml (Pi)
+# and edit the paths/hosts for your machines. Do NOT put secrets in this file —
+# see docs/security.md for where secrets (API tokens, Tailscale auth keys) live instead.
+#
+# Every value here can be overridden with an environment variable of the form
+# WORKSPACE_<SECTION>__<KEY> (double underscore between section and key), e.g.
+# WORKSPACE_DASHBOARD__PORT=9000. Env overrides win over the file.
+
+# "mac" | "pi" | "auto" (default). Controls which `workspace doctor` checks
+# run -- e.g. backup-HDD/SSD/dashboard checks only make sense on the Pi, and
+# "is the Mac reachable" only makes sense on the Pi asking about the Mac.
+# "auto" infers from the OS (Linux -> pi, else -> mac); only override this if
+# you're doing something unusual (e.g. testing Pi checks from a Mac).
+role: "auto"
+
+workspace:
+  # Local path on the Mac where you work day-to-day. Always a normal local
+  # directory -- development never happens against the network mount.
+  local_mac_path: "/Users/example/Workspace"
+
+  # Path on the Pi where the synchronized workspace lives. This MUST be on the
+  # dedicated external SSD/NVMe (see disk.workspace_uuid below), never the SD card.
+  pi_path: "/mnt/workspace/Workspace"
+
+  # Subdirectory (relative to workspace root) that the dashboard/CLI treats as
+  # "projects" for Git-aware scanning and the Projects view.
+  projects_subdir: "Projects"
+
+  # Optional stand-in for the real workspace disk, ONLY for exercising
+  # Syncthing end-to-end before an SSD/NVMe is attached. Lives on the Pi's
+  # own SD card on purpose, so it is capped at max_bytes and never used for
+  # real project data. Automatically stops being used the moment
+  # disk.workspace_uuid below is set and that disk is mounted -- no other
+  # config change needed to "graduate" from test to production.
+  test_workspace:
+    enabled: false
+    path: "/var/lib/home-services/compat/test-workspace"
+    max_bytes: 536870912  # 500MB
+
+disk:
+  # UUID of the external SSD/NVMe that must be mounted at /mnt/workspace before
+  # anything is allowed to sync or write into workspace.pi_path. Leave blank
+  # until `workspace disk setup` has been run against the real drive.
+  workspace_mount: "/mnt/workspace"
+  workspace_uuid: ""
+
+  # UUID of the external backup HDD that must be mounted at /mnt/workspace-backup
+  # before any backup job is allowed to run.
+  backup_mount: "/mnt/workspace-backup"
+  backup_uuid: ""
+
+sync:
+  enabled: true
+  # Tailscale hostnames (or Tailscale IPs) of the two Syncthing peers.
+  mac_host: "mac.example.local"
+  pi_host: "pi.example.local"
+  # Syncthing GUI/API listens on localhost only on both ends; the utility talks
+  # to it locally and never exposes the Syncthing GUI itself over Tailscale.
+  syncthing_api_port: 8384
+  ignore_file: "config/syncthing-ignore.stignore"
+
+backup:
+  enabled: true
+  destination: "/mnt/workspace-backup"
+  repository_subdir: "restic-repo"
+  hourly_keep: 24
+  daily_keep: 14
+  weekly_keep: 8
+  monthly_keep: 12
+  # Cadence for the systemd timer (see services/pi/workspace-backup.timer)
+  schedule: "hourly"
+  integrity_check_schedule: "weekly"
+
+dashboard:
+  enabled: true
+  # Bind to the Pi's Tailscale interface IP specifically (not 0.0.0.0) so the
+  # dashboard is reachable from your tailnet but not from the home LAN or the
+  # internet. `workspace dashboard status` / the installer resolve this
+  # automatically from `tailscale ip -4` if left blank.
+  bind_host: ""
+  port: 8787
+  # Shared-secret auth required on every /api/* request (header
+  # X-Workspace-Token) as defense in depth even though Tailscale is the
+  # primary boundary. Real value lives in an env file outside the repo.
+  auth_token_env_var: "WORKSPACE_DASHBOARD_TOKEN"
+  # Roots the file browser / project scanner is allowed to touch. Anything
+  # outside these is rejected, even with a crafted path.
+  allowed_roots:
+    - "/mnt/workspace/Workspace"
+  # Keep disabled unless this dashboard is installed on the Pi. When enabled,
+  # an authenticated user must type a confirmation phrase; active backups are
+  # refused, and the request can be cancelled during this short delay.
+  shutdown_enabled: false
+  shutdown_delay_seconds: 15
+  # Optional stable HTTPS URL (e.g. your Tailscale hostname) used only to
+  # build a "view this event" link in outgoing notifications. Never
+  # required; the link still requires the normal dashboard token.
+  external_url: ""
+
+# Optional USB webcam. The dedicated stream service creates a short HLS
+# window locally; the dashboard is the only HTTPS endpoint that serves it.
+# Enable only after confirming the V4L2 device with `v4l2-ctl --list-devices`.
+# See docs/camera.md for the full picture.
+camera:
+  enabled: false
+  device: "/dev/video0"
+  device_name: "Workspace Pi Camera"  # shown in notifications/UI
+  width: 640
+  height: 480
+  # Set false when live_stream_enabled owns this UVC device. This avoids a
+  # second snapshot ffmpeg process competing for /dev/video0; stored historic
+  # snapshots/events remain untouched and readable.
+  background_capture_enabled: true
+  # How often a snapshot is captured *and saved* while idle (not armed).
+  # 5-10s is a sensible range for a low-rate presence snapshot.
+  refresh_seconds: 8
+
+  # Continuous iPhone/Safari-compatible H.264 HLS. ffmpeg has no listener;
+  # systemd writes the rolling segment files to this volatile runtime path and
+  # the existing authenticated dashboard serves them over Tailscale HTTPS.
+  live_stream_enabled: false
+  live_stream_dir: "/run/workspace-camera-hls"
+  live_stream_width: 640
+  live_stream_height: 480
+  live_stream_fps: 10
+  live_stream_bitrate_kbps: 1200
+  live_stream_hls_time_seconds: 2
+  live_stream_hls_list_size: 6
+
+  # Persistent storage -- must be a real, already-mounted, non-root-disk
+  # location (this Pi's backup HDD, by default) so captures survive
+  # restarts/reinstalls and never fill the boot/OS disk. Organized as
+  # <storage_dir>/snapshots/<YYYY-MM-DD>/<HH-MM-SS-ffffff>.jpg and
+  # <storage_dir>/events/<event-id>/ for motion recordings.
+  storage_dir: "/mnt/workspace-backup/camera"
+  snapshot_retention_days: 14
+  recording_retention_days: 30
+  # Capture pauses (with a dashboard warning) once free space on
+  # storage_dir's filesystem drops below this. Existing *unsynced* motion
+  # recordings are never deleted just to free space -- see docs/camera.md.
+  min_free_bytes: 2000000000  # 2 GB
+
+  # Sync persisted media to the Mac using a dedicated Syncthing folder
+  # (send-only on the Pi, receive-only on the Mac) -- the same mechanism
+  # already used for Workspace file sync, not a second parallel system. See
+  # docs/camera.md#mac-sync for one-time setup via `workspace camera
+  # sync-setup-pi` / `sync-setup-mac`.
+  sync_enabled: false
+  mac_sync_path: ""  # set on the Mac's own config.yaml, e.g. "/Users/you/Pi Camera"
+
+  # "Out of the House" armed/disarmed state is remembered across restarts in
+  # logging.dir/camera_state.json; this is only its very first value.
+  out_of_house_default: false
+
+  # Tuning for the frame-differencing motion detector used by "Out of the
+  # House" mode -- deliberately simple (no ML) and fully explainable. See
+  # docs/camera.md#motion-detection.
+  motion:
+    sample_interval_seconds: 2.0   # how often a frame is analyzed while armed
+    sensitivity: 25                # 0-255 per-pixel grayscale difference threshold
+    min_changed_area_fraction: 0.02  # fraction of the frame that must change
+    consecutive_frames: 3          # frames in a row over threshold before triggering
+    cooldown_seconds: 120          # minimum gap between separate *notifications*
+    recording_seconds_after_motion: 20  # keep recording this long after the last motion
+    max_recording_seconds: 300     # hard cap per event regardless of continued motion
+    recording_fps: 8
+    analysis_width: 160
+    analysis_height: 120
+
+commands:
+  # Whitelisted commands the dashboard/CLI/phone are allowed to trigger.
+  # Nothing outside this list is ever runnable from the dashboard.
+  git_status:
+    command: ["git", "status", "--short", "--branch"]
+    allowed_roots:
+      - "/mnt/workspace/Workspace/Projects"
+    timeout_seconds: 30
+
+  project_health_check:
+    command: ["scripts/project-health-check.sh"]
+    allowed_roots:
+      - "/mnt/workspace/Workspace/Projects"
+    timeout_seconds: 120
+
+mac_bridge:
+  enabled: false
+  # Tailscale hostname/IP of the Mac companion service, and the port it binds.
+  host: "mac.example.local"
+  port: 8788
+  # Shared token used to authenticate Pi -> Mac requests. Store the real value
+  # in the Mac Keychain / an env file outside the repo -- see docs/security.md.
+  token_env_var: "WORKSPACE_MAC_BRIDGE_TOKEN"
+  # Lets the dashboard request only the safe dashboard actions that the
+  # already-running Hammerspoon configuration explicitly registers.
+  automation_enabled: true
+  hammerspoon_cli: "hs"
+
+# Optional Home Platform Control Plane automation registry.  Keep disabled
+# until the Control Plane is installed and reachable from this Pi.  The
+# dashboard can then show its registered runs and trigger only registry-backed
+# actions; it never runs free-form shell commands.
+automation_hub:
+  enabled: false
+  # Home Platform keeps its FastAPI Control Plane internal to Docker. Its
+  # loopback-only Next.js dashboard proxies /api/v1 to that service on the Pi.
+  control_plane_url: "http://127.0.0.1:3000"
+
+# Optional TP-Link Tapo smart-plug power monitoring/control (P110/P110M/P115
+# energy-monitoring plugs). Requires `pip install -e ".[power]"` and the
+# WORKSPACE_TAPO_USERNAME / WORKSPACE_TAPO_PASSWORD env vars (your Tapo
+# account, not a device-local password) -- see docs/security.md. Devices are
+# addressed by local IP; each plug must already be paired to that account via
+# the Tapo app once before this can reach it.
+tapo:
+  enabled: false
+  poll_seconds: 10
+  retention_days: 90
+  devices: []
+  # devices:
+  #   - name: "Office Lamp"
+  #     ip: "10.0.0.50"
+
+notifications:
+  enabled: true
+  # Pluggable backends. "log" always runs (see logs/motion.log). Add "ntfy"
+  # for zero-credential push notifications to your phone via ntfy.sh or a
+  # self-hosted ntfy server -- install the ntfy app, subscribe to a private,
+  # hard-to-guess topic name, then set WORKSPACE_NTFY_URL to
+  # "https://ntfy.sh/<your-topic>" (see docs/camera.md#notifications). Add
+  # "webhook" for a generic JSON POST (e.g. a custom receiver or
+  # home-platform's own webhook) via a URL env var.
+  backends:
+    - type: "log"
+    # - type: "ntfy"
+    #   url_env_var: "WORKSPACE_NTFY_URL"
+
+logging:
+  dir: "logs"
+  level: "INFO"

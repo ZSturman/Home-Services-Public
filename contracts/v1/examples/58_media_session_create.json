@@ -1,0 +1,29 @@
+{
+  "name": "media_session_create",
+  "request": {
+    "body": {
+      "event_id": "20260910T123045-7d79a4",
+      "kind": "legacy_event_media",
+      "name": "recording.mp4"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000002.fixture-secret-0002",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/media/sessions"
+  },
+  "response": {
+    "body": {
+      "expires_at": "2026-10-20T08:16:30Z",
+      "kind": "legacy_event_media",
+      "url": "/api/v1/media/sessions/fixture-secret-0005"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 201
+  }
+}

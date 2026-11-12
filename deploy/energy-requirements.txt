@@ -1,0 +1,4 @@
+# Optional private Mac reporting runtime, separate from server/compat packages.
+tapo==0.12.1
+python-dotenv==1.2.1
+tzdata==2026.6

@@ -1,0 +1,34 @@
+{
+  "name": "opportunities_dispatch_rejected",
+  "request": {
+    "body": {
+      "action": "submit",
+      "body": {},
+      "path": "/api/v2/outbox/dispatch",
+      "request_id": "fixture-dispatch",
+      "workspace_id": "fixture-opportunities"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000009.fixture-secret-0012",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/opportunities/relay"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "bad_request",
+        "details": {},
+        "message": "This request cannot be queued; sending and dispatch stay on the Mac"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "cache-control": "no-store",
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 400
+  }
+}

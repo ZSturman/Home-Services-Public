@@ -1,0 +1,32 @@
+{
+  "name": "error_contract_version_unsupported",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "2"
+    },
+    "method": "GET",
+    "path": "/api/v1/bootstrap"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "contract_version_unsupported",
+        "details": {
+          "requested": "2",
+          "server_version": "0.4.10",
+          "supported_majors": [
+            1
+          ]
+        },
+        "message": "this server implements contract 1.6; update the client or server"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 400
+  }
+}

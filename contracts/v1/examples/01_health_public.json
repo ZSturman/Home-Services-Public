@@ -1,0 +1,21 @@
+{
+  "name": "health_public",
+  "request": {
+    "headers": {
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/healthz"
+  },
+  "response": {
+    "body": {
+      "status": "ok"
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

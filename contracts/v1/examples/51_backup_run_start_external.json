@@ -1,0 +1,48 @@
+{
+  "name": "backup_run_start_external",
+  "note": "external repositories have their own writer lease",
+  "request": {
+    "body": {
+      "scheduler": "files-backups-companion"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000003.fixture-secret-0003",
+      "Home-Services-Contract": "1",
+      "Idempotency-Key": "mac-projects-2026-10-21T02:00"
+    },
+    "method": "POST",
+    "path": "/api/v1/backups/sources/src_0000000000000003/runs"
+  },
+  "response": {
+    "body": {
+      "error": null,
+      "finished_at": null,
+      "heartbeat": {
+        "age_seconds": 0.0,
+        "at": "2026-10-20T08:01:30Z"
+      },
+      "id": "run_0000000000000002",
+      "lease_expires_at": "2026-10-20T08:16:30Z",
+      "progress": {
+        "age_seconds": null,
+        "at": null,
+        "data": null
+      },
+      "repository": {
+        "lease_seconds": 900,
+        "locator": "sftp:backup@host.example.net:/mnt/workspace-backup/restic-repo"
+      },
+      "snapshot_id": null,
+      "source_id": "src_0000000000000003",
+      "started_at": "2026-10-20T08:01:30Z",
+      "state": "running",
+      "summary": null
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 201
+  }
+}

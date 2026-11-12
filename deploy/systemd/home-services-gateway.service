@@ -1,0 +1,24 @@
+[Unit]
+Description=Home Services API gateway (private bind only)
+After=network-online.target tailscaled.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=home-services
+Group=home-services
+Environment=HOME_SERVICES_CONFIG=/etc/home-services/config.toml
+WorkingDirectory=/var/lib/home-services
+ExecStart=/opt/home-services/current/venv/bin/home-services serve
+# Exit 75 means a configured interface address changed; restarting rebinds.
+# The gateway waits for interface addresses and never binds a wildcard.
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+# Deliberately no ProtectSystem=/PrivateTmp=/ProtectHome=: the predecessor
+# found a private mount namespace hid a USB disk mounted after start, and the
+# API then reported the SD card as the backup disk. Volume checks need the
+# host's live mount table.
+
+[Install]
+WantedBy=multi-user.target

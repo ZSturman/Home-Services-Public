@@ -1,0 +1,27 @@
+{
+  "name": "backups_snapshot_file",
+  "request": {
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/backups/snapshots/8172e6e648c42b4352e65cf32b2bf52b3f35641a7d886340feecd4a90c04e02d/content",
+    "query": {
+      "path": "/srv/fixture/backup-source/Projects/Demo/notes.txt"
+    }
+  },
+  "response": {
+    "body": {
+      "bytes": 30,
+      "sha256": "3a78a6caa5725451ed8dc62fe8ce33210fdb63203c17bb419ab406ade15fd52f"
+    },
+    "body_kind": "bytes",
+    "headers": {
+      "content-disposition": "attachment; filename=\"notes.txt\"",
+      "content-type": "application/octet-stream",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "backup_source_register_conflict",
+  "note": "one scheduler owns a source",
+  "request": {
+    "body": {
+      "host": "fixture-mac",
+      "path": "/srv/fixture/backup-source",
+      "scheduler": "legacy-launchagent",
+      "tag": "mac-workspace"
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000003.fixture-secret-0003",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/backups/sources"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "source_owned_by_other_scheduler",
+        "details": {
+          "scheduler": "files-backups-companion",
+          "source_id": "src_0000000000000001"
+        },
+        "message": "this source is owned by another scheduler"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 409
+  }
+}

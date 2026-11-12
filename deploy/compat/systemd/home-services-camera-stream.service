@@ -1,0 +1,25 @@
+[Unit]
+Description=Home Services - private live camera stream
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kiosk
+Group=kiosk
+SupplementaryGroups=video
+Environment=PATH=/opt/home-services/compat/current/venv/bin:/usr/bin:/bin
+WorkingDirectory=/opt/home-services/compat/current
+RuntimeDirectory=workspace-camera-hls
+RuntimeDirectoryMode=0750
+ExecStart=/opt/home-services/compat/current/venv/bin/python -m workspace_util.camera_stream --config /etc/home-services/compat/config.yaml
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/run/workspace-camera-hls
+
+[Install]
+WantedBy=multi-user.target

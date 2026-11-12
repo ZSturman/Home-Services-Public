@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the Wi-Fi/Tailscale self-heal guard regularly, starting shortly after boot
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=3min
+AccuracySec=15s
+
+[Install]
+WantedBy=timers.target

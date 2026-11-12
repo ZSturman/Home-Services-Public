@@ -1,0 +1,42 @@
+{
+  "name": "upload_complete",
+  "note": "destination existed, so keep_both published 'existing (1).txt'",
+  "request": {
+    "body": {
+      "create_parents": false
+    },
+    "headers": {
+      "Authorization": "Bearer hst_tok_0000000000000001.fixture-secret-0001",
+      "Home-Services-Contract": "1"
+    },
+    "method": "POST",
+    "path": "/api/v1/transfers/uploads/upl_0000000000000001/complete"
+  },
+  "response": {
+    "body": {
+      "abandon_after": null,
+      "conflict": "keep_both",
+      "created_at": "2026-10-20T08:00:00Z",
+      "error": null,
+      "id": "upl_0000000000000001",
+      "offset": 63,
+      "path": "Documents/existing.txt",
+      "published_path": "Documents/existing (1).txt",
+      "root": "files",
+      "sha256": "2328c81fcff9e9237f08cbfe8aaa5d25c13d4ab6b7bd360988e6e8fe70b45e91",
+      "size": 63,
+      "state": "published",
+      "updated_at": "2026-10-20T08:00:00Z",
+      "verification": {
+        "sha256": "matched",
+        "size": "matched"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 200
+  }
+}

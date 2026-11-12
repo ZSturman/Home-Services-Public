@@ -1,0 +1,25 @@
+{
+  "name": "error_unauthenticated",
+  "request": {
+    "headers": {
+      "Home-Services-Contract": "1"
+    },
+    "method": "GET",
+    "path": "/api/v1/capabilities"
+  },
+  "response": {
+    "body": {
+      "error": {
+        "code": "unauthenticated",
+        "details": {},
+        "message": "missing bearer token"
+      }
+    },
+    "body_kind": "json",
+    "headers": {
+      "content-type": "application/json",
+      "home-services-contract": "1.6"
+    },
+    "status": 401
+  }
+}
